@@ -1,5 +1,6 @@
 package game.code;
 
+import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -18,6 +19,7 @@ public class MainThread extends Thread{
     public void setRunning(boolean r){
         running = r;
     }
+    @SuppressLint("WrongCall")
     @Override
     public void run(){
         // TODO Auto-generated method stub
@@ -29,7 +31,7 @@ public class MainThread extends Thread{
             //cap nhat lai trang thai game
             canvas = surfaceholder.lockCanvas();
             if (canvas!=null){
-                gamepanel.draw(canvas);
+                gamepanel.onDraw(canvas);
                 surfaceholder.unlockCanvasAndPost(canvas);
             }
             // render du lieu ra man hinh
