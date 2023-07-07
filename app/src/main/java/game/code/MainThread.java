@@ -1,5 +1,6 @@
 package game.code;
 
+import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -20,11 +21,17 @@ public class MainThread extends Thread{
     @Override
     public void run(){
         // TODO Auto-generated method stub
-        super.run();
         long dem=0L;
+        super.run();
+        Canvas canvas = null;
         while (running){
             dem++;
             //cap nhat lai trang thai game
+            canvas = surfaceholder.lockCanvas();
+            if (canvas!=null){
+                gamepanel.draw(canvas);
+                surfaceholder.unlockCanvasAndPost(canvas);
+            }
             // render du lieu ra man hinh
             Log.d("testloop:", "loop "+ dem);
         }
